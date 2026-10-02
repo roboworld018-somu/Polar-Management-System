@@ -2,7 +2,9 @@ const API = "https://polar-management-system-1.onrender.com/api";
 
 async function request(path, options = {}) {
   const response = await fetch(`${API}${path}`, {
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+    },
     ...options,
   });
 
@@ -13,14 +15,16 @@ async function request(path, options = {}) {
   return response.json();
 }
 
-export const getCurrentEnergy = () =>
-  request("/energy/current");
+export const getCurrentEnergy = () => {
+  return request("/energy/current");
+};
 
-export const getEnergyHistory = () =>
-  request("/energy/history");
+export const getEnergyHistory = () => {
+  return request("/energy/history");
+};
 
-export const getForecast = () =>
-  request("/forecast/load", {
+export const getForecast = () => {
+  return request("/forecast/load", {
     method: "POST",
     body: JSON.stringify({
       hours: 24,
@@ -29,9 +33,11 @@ export const getForecast = () =>
       wind_kw: 15,
     }),
   });
+};
 
-export const getOptimization = (data) =>
-  request("/optimization/recommend", {
+export const getOptimization = (data) => {
+  return request("/optimization/recommend", {
     method: "POST",
     body: JSON.stringify(data),
   });
+};
